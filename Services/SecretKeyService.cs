@@ -7,6 +7,9 @@ public interface ISecretKeyService
   string GetCertHash();
 }
 
+
+//HINT: This service reads the secret key from a file and computes the SHA256 hash
+
 public class SecretKeyService : ISecretKeyService
 {
   ICertLocationProvider _locationProvider;
@@ -55,3 +58,4 @@ public class SecretKeyService : ISecretKeyService
     }
   }
 }
+

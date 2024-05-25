@@ -17,7 +17,7 @@ export const InfoContext = createContext<InfoContextValue>({
     CertificateHash: "DEFAULT",
     SystemOS: "DEFAULT",
   },
-  Env: "INVALID",
+  Env: "DEFAULT",
 });
 
 export const InfoProvider = ({ children }: React.PropsWithChildren) => {
@@ -26,12 +26,17 @@ export const InfoProvider = ({ children }: React.PropsWithChildren) => {
   useEffect(() => {
     fetch("/Decoy")
       .then((response) => response.json())
-      .then((data) => setInfo(data))
+      .then((data) => {
+        setInfo(data);
+      })
       .catch((error) => console.log(error));
   }, []);
 
   return (
-    <InfoContext.Provider key={JSON.stringify(info)} value={{ Info: info, SetInfo: setInfo, Env: "ACTIVE" }}>
+    <InfoContext.Provider
+      key={JSON.stringify(info)}
+      value={{ Info: info, SetInfo: setInfo, Env: "ACTIVE" }}
+    >
       {children}
     </InfoContext.Provider>
   );

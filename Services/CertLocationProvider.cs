@@ -9,6 +9,7 @@ public class CertLocationProvider : ICertLocationProvider
   public string GetCertLocation()
   {
     //HINT: The certificate file is located in the certs folder
-    return "";
+    return "../Certs/ValidCertificate.cert";
   }
 }
+
